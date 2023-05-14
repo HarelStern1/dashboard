@@ -1,6 +1,5 @@
 import { Box } from "@mui/material";
 import S from "./style";
-
 import usePresenter from "./presenter";
 
 const SideBar = () => {

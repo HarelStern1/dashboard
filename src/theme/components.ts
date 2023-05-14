@@ -29,4 +29,13 @@ export const components = {
       disableClearable: true,
     },
   },
+  MuiMenu: {
+    styleOverrides: {
+      root: {
+        "& .MuiMenu-paper": {
+          backgroundColor: "#fff",
+        },
+      },
+    },
+  },
 };
