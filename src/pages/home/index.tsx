@@ -1,10 +1,21 @@
-import { Box, Button, MenuItem } from "@mui/material";
-import { TextField, Select, Autocomplete } from "../../components";
-import { useForm } from "react-hook-form";
+import { Box, Button, Typography } from "@mui/material";
+import { MultiStepScheme, useMultistepForm } from "../../hooks/useMultistepForm";
+import { Select, TextField } from "../../components";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-const schema = yup
+const multiStepScheme: MultiStepScheme = [
+  [
+    [{ name: "firstName", label: "First Name", component: TextField }],
+    [{ name: "lastName", label: "Last Name", component: TextField }],
+  ],
+  [
+    [{ name: "country", label: "Country", component: TextField }],
+    [{ name: "movie", label: "Movie", component: TextField }],
+  ],
+];
+
+const validationScheme = yup
   .object({
     firstName: yup.string().required(),
     lastName: yup.string().required(),
@@ -13,54 +24,24 @@ const schema = yup
   })
   .required();
 
-type FormData = yup.InferType<typeof schema>;
-
-const countries = [
-  {
-    label: "Israel",
-    value: "israel",
-  },
-  {
-    label: "United States",
-    value: "usa",
-  },
-];
-
-const movies = [
-  {
-    label: "Pulp Fiction",
-    id: "best movie ever",
-  },
-  {
-    label: "Fight Club",
-    id: "Dont talk about it",
-  },
-];
-
-const formFields = [
-  { name: "firstName", component: TextField },
-  { name: "lastName", component: TextField },
-  { name: "country", options: countries, component: Select },
-  { name: "movie", options: countries, component: Autocomplete },
-];
+type FormData = yup.InferType<typeof validationScheme>;
 
 const Home = () => {
-  const { control, handleSubmit } = useForm<FormData>({
-    resolver: yupResolver(schema),
+  const { currentStep, next, back, handleSubmit } = useMultistepForm({
+    multiStepScheme,
+    validationScheme,
   });
 
   const onSubmit = (data: FormData) => console.log(data);
 
-  const fields = formFields.map((field) => {
-    const { name, options, component: Component } = field;
-
-    return <Component key={name} name={name} control={control} options={options || []} />;
-  });
-
   return (
-    <Box component="form" sx={{ padding: "50px" }} onSubmit={handleSubmit(onSubmit)}>
-      {fields}
-      <Button type="submit">Submit</Button>
+    <Box sx={{ padding: "100px" }} component="form" onSubmit={handleSubmit(onSubmit)}>
+      {currentStep}
+      <Button onClick={next}>Next</Button>
+      <Button onClick={back}>Back</Button>
+      <Button variant="contained" type="submit">
+        Submit
+      </Button>
     </Box>
   );
 };
