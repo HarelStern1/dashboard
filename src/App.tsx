@@ -1,11 +1,12 @@
-import Layout from "./layouts/layout";
+import Layout from "./layouts/main-layout";
 import Home from "./pages/home";
+import SignUp from "./pages/sign-up";
 
 const App = () => {
   return (
-    <Layout>
-      <Home />
-    </Layout>
+    // <Layout>
+    <SignUp />
+    // </Layout>
   );
 };
 

@@ -7,6 +7,7 @@ import * as yup from "yup";
 interface Field {
   name: string;
   label: string;
+  options?: { label: string; value: string }[];
   component: (...params: any) => JSX.Element;
 }
 
@@ -46,5 +47,6 @@ export const useMultistepForm = ({ multiStepScheme, validationScheme }: UseMulti
     handleSubmit,
     isFirst: step === 0,
     isLast: step === multiStepScheme.length - 1,
+    step,
   };
 };

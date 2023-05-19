@@ -16,7 +16,7 @@ export default {
     shouldForwardProp: (prop) => prop !== "isOpen",
   })<WrapperProps>(({ theme, isOpen }) => ({
     height: `calc(100vh - ${theme.spacing(2)})`,
-    width: isOpen ? "140px" : "80px",
+    width: isOpen ? "260px" : "100px",
     background: theme.palette.primary.dark,
     margin: theme.spacing(1),
     borderRadius: theme.spacing(2),
@@ -41,6 +41,7 @@ export default {
     justifyContent: "flex-start",
     height: "100%",
     gap: theme.spacing(10),
+    padding: theme.spacing(3, 0),
   })),
   Nav: styled(Box)(({ theme }) => ({
     display: "flex",
