@@ -4,27 +4,27 @@ import TaskAltIcon from "@mui/icons-material/TaskAlt";
 
 interface WrapperProps {
   step: number;
-  id: number;
+  cardId: number;
 }
 
 interface IconProps {
   step: number;
-  id: number;
+  cardId: number;
 }
 
 export default {
   Wrapper: styled(Box, {
     shouldForwardProp: (prop) => prop !== "step" && prop !== "id",
-  })<WrapperProps>(({ theme, step, id }) => ({
+  })<WrapperProps>(({ theme, step, cardId }) => ({
     transition: "all 0.2s",
     display: "flex",
     alignItems: "flex-start",
     gap: theme.spacing(2),
-    color: step === id ? theme.palette.common.black : "#8f98a6",
+    color: step === cardId ? theme.palette.common.black : "#8f98a6",
   })),
   Icon: styled(TaskAltIcon, {
     shouldForwardProp: (prop) => prop !== "step" && prop !== "id",
-  })<IconProps>(({ theme, step, id }) => ({
-    color: step === id ? "#1247b9" : id < step ? "rgba(18, 71, 185, 0.5)" : "inherit",
+  })<IconProps>(({ theme, step, cardId }) => ({
+    color: step === cardId ? "#1247b9" : cardId < step ? "rgba(18, 71, 185, 0.5)" : "inherit",
   })),
 };

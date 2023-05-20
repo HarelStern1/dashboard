@@ -9,13 +9,13 @@ export default {
   Left: styled(Box)(({ theme }) => ({
     flex: 0.3,
     background: "#edf1f1",
-    padding: theme.spacing(3),
+    padding: theme.spacing(6, 5),
   })),
   StepCards: styled(Box)(({ theme }) => ({
-    margin: theme.spacing(8, 0),
+    margin: theme.spacing(12, 0),
     display: "flex",
     flexDirection: "column",
-    gap: theme.spacing(3),
+    gap: theme.spacing(4),
   })),
   Right: styled(Box)(({ theme }) => ({
     flex: 0.7,

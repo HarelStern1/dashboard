@@ -5,6 +5,9 @@
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
+    "@fontsource/montserrat": "^4.5.14",
+    "@fontsource/poppins": "^4.5.10",
+    "@fontsource/roboto": "^4.5.8",
     "@hookform/resolvers": "^3.1.0",
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.12.2",

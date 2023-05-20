@@ -37,14 +37,14 @@ export interface SignUpFormProps {
   setStep: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const usePresenter = (props: SignUpFormProps) => {
+const usePresenter = ({ setStep }: SignUpFormProps) => {
   const { currentStep, next, back, handleSubmit, isFirst, isLast, step } = useMultistepForm({
     multiStepScheme,
     validationScheme,
   });
 
   useEffect(() => {
-    props.setStep(step);
+    setStep(step);
   }, [step]);
 
   const onSubmit = (data: FormData) => console.log(data);

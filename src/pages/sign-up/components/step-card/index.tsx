@@ -1,5 +1,4 @@
 import { Box, Typography } from "@mui/material";
-import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import S from "./style";
 
 interface Card {
@@ -15,8 +14,8 @@ interface StepCardProps {
 
 const StepCard = ({ card, step }: StepCardProps) => {
   return (
-    <S.Wrapper step={step} id={card.id as never}>
-      <S.Icon step={step} id={card.id as never} />
+    <S.Wrapper step={step} cardId={card.id}>
+      <S.Icon step={step} cardId={card.id} />
       <Box>
         <Typography fontWeight={700}>{card.title}</Typography>
         <Typography>{card.subtitle}</Typography>
