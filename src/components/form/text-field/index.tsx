@@ -1,27 +1,35 @@
-import { StandardTextFieldProps, TextField as MuiTextField } from "@mui/material";
-import { Controller } from "react-hook-form";
+import {
+  StandardTextFieldProps,
+  TextField as MuiTextField,
+  FormControl,
+  FormLabel,
+} from "@mui/material";
+import { Control, Controller, FieldValues, Path, PathValue } from "react-hook-form";
 
-interface TextFieldProps extends StandardTextFieldProps {
-  name: string;
-  control: any;
+interface TextFieldProps<T extends FieldValues> extends StandardTextFieldProps {
+  name: Path<T>;
+  control: Control<T>;
   label: string;
 }
 
-export const TextField = ({ name, control, label }: TextFieldProps) => {
+export const TextField = <T extends FieldValues>(props: TextFieldProps<T>) => {
+  const { name, control, label } = props;
   return (
-    <Controller
-      control={control}
-      name={name}
-      defaultValue=""
-      render={({ field: { value, onChange }, fieldState: { error } }) => (
-        <MuiTextField
-          value={value}
-          onChange={onChange}
-          label={label}
-          error={!!error}
-          helperText={error?.message}
-        />
-      )}
-    />
+    <FormControl>
+      <FormLabel>{label}</FormLabel>
+      <Controller
+        control={control}
+        name={name}
+        defaultValue={"" as PathValue<T, Path<T>>}
+        render={({ field: { value, onChange }, fieldState: { error } }) => (
+          <MuiTextField
+            value={value}
+            onChange={onChange}
+            error={!!error}
+            helperText={error?.message}
+          />
+        )}
+      />
+    </FormControl>
   );
 };

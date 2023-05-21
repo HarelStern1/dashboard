@@ -1,3 +1,5 @@
+import theme from "./theme";
+
 export const components = {
   MuiButton: {
     styleOverrides: {
@@ -35,6 +37,21 @@ export const components = {
         "& .MuiMenu-paper": {
           backgroundColor: "#fff",
         },
+      },
+    },
+  },
+  MuiFormHelperText: {
+    styleOverrides: {
+      root: {
+        margin: "4px 0 0 0",
+        fontSize: "14px",
+      },
+    },
+  },
+  MuiFormLabel: {
+    styleOverrides: {
+      root: {
+        margin: "0 0 8px 0",
       },
     },
   },

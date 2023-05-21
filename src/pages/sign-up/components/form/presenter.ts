@@ -6,7 +6,14 @@ import * as yup from "yup";
 export const multiStepScheme: MultiStepScheme = [
   [
     [{ name: "firstName", label: "First Name", component: TextField }],
-    [{ name: "lastName", label: "Last Name", component: TextField }],
+    [
+      {
+        name: "lastName",
+        label: "Last Name",
+        component: Select,
+        options: [{ label: "Label1", value: "value1" }],
+      },
+    ],
     [
       {
         name: "email",

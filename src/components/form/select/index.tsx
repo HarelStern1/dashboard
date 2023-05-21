@@ -1,14 +1,23 @@
-import { MenuItem, Select as MuiSelect } from "@mui/material";
+import {
+  FormControl,
+  FormLabel,
+  MenuItem,
+  Select as MuiSelect,
+  SelectProps as MuiSelectProps,
+} from "@mui/material";
 import { PropsWithChildren } from "react";
-import { Controller } from "react-hook-form";
+import { Control, Controller, FieldValues, Path, PathValue } from "react-hook-form";
 
-interface SelectProps {
-  name: string;
-  control: any;
-  options: any[];
+interface SelectProps<T extends FieldValues> extends MuiSelectProps {
+  name: Path<T>;
+  control: Control<T>;
+  options: PathValue<T, Path<T>>[];
+  label?: string;
 }
 
-export const Select = ({ name, control, options }: PropsWithChildren<SelectProps>) => {
+export const Select = <T extends FieldValues>(props: PropsWithChildren<SelectProps<T>>) => {
+  const { name, control, options, label } = props;
+
   const selectOptions = options.map(({ label, value }) => (
     <MenuItem key={value} value={value}>
       {label}
@@ -21,9 +30,12 @@ export const Select = ({ name, control, options }: PropsWithChildren<SelectProps
       name={name}
       defaultValue={options[0].value}
       render={({ field: { value, onChange }, fieldState: { error } }) => (
-        <MuiSelect value={value} onChange={onChange} error={!!error}>
-          {selectOptions}
-        </MuiSelect>
+        <FormControl>
+          <FormLabel>{label}</FormLabel>
+          <MuiSelect value={value} onChange={onChange} error={!!error}>
+            {selectOptions}
+          </MuiSelect>
+        </FormControl>
       )}
     />
   );
