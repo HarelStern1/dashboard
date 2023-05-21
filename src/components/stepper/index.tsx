@@ -2,7 +2,6 @@ import { Box } from "@mui/material";
 import React from "react";
 
 export const Stepper = ({ steps, currentStep }: { steps: number; currentStep: number }) => {
-  console.log(new Array(3));
   return (
     <Box sx={{ display: "flex", alignItems: "center", gap: "12px" }}>
       {new Array(steps)

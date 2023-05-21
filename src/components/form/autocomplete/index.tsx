@@ -1,17 +1,17 @@
-import { FormControl, FormLabel, Autocomplete as MuiAutocomplete, Typography } from "@mui/material";
-import TextField from "@mui/material/TextField";
-import { Control, Controller, FieldValues, Path, PathValue } from "react-hook-form";
+import { FormControl, Autocomplete as MuiAutocomplete, TextField } from "@mui/material";
+import { Control, Controller, FieldValues, Path } from "react-hook-form";
 import { Option } from "../types";
 import S from "./style";
 
 interface AutocompleteProps<T extends FieldValues> {
-  control: Control<T>;
   name: Path<T>;
+  control: Control<T>;
   options: Option[];
+  label?: string;
 }
 
 export const Autocomplete = <T extends FieldValues>(props: AutocompleteProps<T>) => {
-  const { control, options, name } = props;
+  const { name, control, options, label } = props;
   return (
     <Controller
       name={name}
@@ -19,7 +19,7 @@ export const Autocomplete = <T extends FieldValues>(props: AutocompleteProps<T>)
       render={({ field: { onChange, value, ref }, fieldState: { error } }) => {
         return (
           <FormControl>
-            <FormLabel>huguy</FormLabel>
+            <S.Label>{label}</S.Label>
             <MuiAutocomplete
               value={value ? options.find((option) => value === option.value) ?? null : null}
               getOptionLabel={(option) => option.label}
