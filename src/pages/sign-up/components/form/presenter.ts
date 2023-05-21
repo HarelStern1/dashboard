@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Select, TextField } from "../../../../components";
+import { Autocomplete, Select, TextField } from "../../../../components";
 import { MultiStepScheme, useMultistepForm } from "../../../../hooks/useMultistepForm";
 import * as yup from "yup";
 
@@ -7,7 +7,14 @@ export const multiStepScheme: MultiStepScheme = [
   [
     [{ name: "firstName", label: "First Name", component: TextField }],
     [{ name: "lastName", label: "Last Name", component: TextField }],
-    [{ name: "email", label: "Email Address", component: TextField }],
+    [
+      {
+        name: "email",
+        label: "Email Address",
+        component: Autocomplete,
+        options: [{ label: "Label1", value: "value1" }],
+      },
+    ],
   ],
   [
     [{ name: "password", label: "Password", component: TextField }],
@@ -57,6 +64,7 @@ const usePresenter = ({ setStep }: SignUpFormProps) => {
     isFirst,
     isLast,
     onSubmit,
+    step,
   };
 };
 

@@ -16,7 +16,7 @@ export default {
   Wrapper: styled(Box, {
     shouldForwardProp: (prop) => prop !== "step" && prop !== "id",
   })<WrapperProps>(({ theme, step, cardId }) => ({
-    transition: "all 0.2s",
+    transition: "all 0.3s",
     display: "flex",
     alignItems: "flex-start",
     gap: theme.spacing(2),

@@ -1,12 +1,14 @@
 import { Box, Button } from "@mui/material";
 import usePresenter, { SignUpFormProps } from "./presenter";
+import { Stepper } from "../../../../components";
 
 const SignUpForm = (props: SignUpFormProps) => {
-  const { currentStep, next, back, handleSubmit, isFirst, isLast, onSubmit } = usePresenter(props);
+  const { currentStep, next, back, handleSubmit, isFirst, isLast, onSubmit, step } =
+    usePresenter(props);
 
   return (
     <Box
-      sx={{ padding: "100px", width: "400px" }}
+      sx={{ padding: "100px", width: "400px", height: "800px" }}
       component="form"
       onSubmit={handleSubmit(onSubmit)}
     >
@@ -18,6 +20,9 @@ const SignUpForm = (props: SignUpFormProps) => {
           Submit
         </Button>
       )}
+      <Box sx={{ marginBottom: "auto" }}>
+        <Stepper steps={3} currentStep={step} />
+      </Box>
     </Box>
   );
 };

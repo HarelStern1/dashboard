@@ -1,9 +1,10 @@
-import { Box, Typography } from "@mui/material";
+import { Box, MobileStepper, Typography } from "@mui/material";
 import SignUpForm from "./components/form";
 import StepCard from "./components/step-card";
 import usePresenter, { stepCards } from "./presenter";
 import S from "./style";
 import PanoramaFishEyeIcon from "@mui/icons-material/PanoramaFishEye";
+import { Stepper } from "../../components";
 
 const SignUp = () => {
   const { step, setStep } = usePresenter();
