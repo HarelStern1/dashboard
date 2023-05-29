@@ -15,14 +15,17 @@ type Row = Field[];
 
 type FieldsScheme = Row[];
 
-export type MultiStepScheme = FieldsScheme[];
+export type MultiStepFormScheme = FieldsScheme[];
 
 interface UseMultistepFormProps {
-  multiStepScheme: MultiStepScheme;
+  multiStepFormScheme: MultiStepFormScheme;
   validationScheme: any;
 }
 
-export const useMultistepForm = ({ multiStepScheme, validationScheme }: UseMultistepFormProps) => {
+export const useMultistepForm = ({
+  multiStepFormScheme,
+  validationScheme,
+}: UseMultistepFormProps) => {
   const { control, trigger, handleSubmit } = useForm<yup.InferType<typeof validationScheme>>({
     resolver: yupResolver(validationScheme),
     mode: "onChange",
@@ -30,23 +33,23 @@ export const useMultistepForm = ({ multiStepScheme, validationScheme }: UseMulti
   const [step, setStep] = useState<number>(0);
 
   const next = async () => {
-    const fieldsToTrigger = multiStepScheme[step].flatMap((fieldGroup) =>
+    const fieldsToTrigger = multiStepFormScheme[step].flatMap((fieldGroup) =>
       fieldGroup.map((field) => field.name)
     );
     const isSuccess = await trigger(fieldsToTrigger);
     if (!isSuccess) return;
-    setStep((prev) => (prev < multiStepScheme.length - 1 ? prev + 1 : prev));
+    setStep((prev) => (prev < multiStepFormScheme.length - 1 ? prev + 1 : prev));
   };
 
   const back = () => setStep((prev) => (prev > 0 ? prev - 1 : prev));
 
   return {
-    currentStep: <FormFields scheme={multiStepScheme[step]} control={control} />,
+    currentStep: <FormFields formScheme={multiStepFormScheme[step]} control={control} />,
     next,
     back,
     handleSubmit,
     isFirst: step === 0,
-    isLast: step === multiStepScheme.length - 1,
+    isLast: step === multiStepFormScheme.length - 1,
     step,
   };
 };

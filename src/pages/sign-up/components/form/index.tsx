@@ -20,7 +20,7 @@ const SignUpForm = (props: SignUpFormProps) => {
           Submit
         </Button>
       )}
-      <Box sx={{ marginBottom: "auto" }}>
+      <Box sx={{ margin: "auto" }}>
         <Stepper steps={3} currentStep={step} />
       </Box>
     </Box>

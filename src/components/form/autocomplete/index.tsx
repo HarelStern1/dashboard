@@ -4,10 +4,10 @@ import {
   Autocomplete as MuiAutocomplete,
   AutocompleteProps as MuiAutocompleteProps,
   TextField,
+  FormHelperText,
 } from "@mui/material";
 import { Control, Controller, FieldValues, Path } from "react-hook-form";
 import { Option } from "../types";
-import S from "./style";
 
 interface AutocompleteProps<T extends FieldValues>
   extends MuiAutocompleteProps<any, any, any, any> {
@@ -34,7 +34,7 @@ export const Autocomplete = <T extends FieldValues>(props: AutocompleteProps<T>)
               options={options}
               renderInput={(params) => <TextField error={!!error} {...params} inputRef={ref} />}
             />
-            {error && <S.HelperText error={!!error}>{error.message}</S.HelperText>}
+            {error && <FormHelperText error={!!error}>{error.message}</FormHelperText>}
           </FormControl>
         );
       }}

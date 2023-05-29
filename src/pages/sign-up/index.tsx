@@ -4,7 +4,7 @@ import StepCard from "./components/step-card";
 import usePresenter, { stepCards } from "./presenter";
 import S from "./style";
 import PanoramaFishEyeIcon from "@mui/icons-material/PanoramaFishEye";
-import { Stepper } from "../../components";
+import { Autocomplete, FormFields, Select, Stepper, TextField } from "../../components";
 
 const SignUp = () => {
   const { step, setStep } = usePresenter();

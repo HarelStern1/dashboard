@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { Autocomplete, Select, TextField } from "../../../../components";
-import { MultiStepScheme, useMultistepForm } from "../../../../hooks/useMultistepForm";
+import { MultiStepFormScheme, useMultistepForm } from "../../../../hooks/useMultistepForm";
 import * as yup from "yup";
 
-export const multiStepScheme: MultiStepScheme = [
+export const multiStepFormScheme: MultiStepFormScheme = [
   [
     [{ name: "firstName", label: "First Name", component: TextField }],
     [
@@ -53,7 +53,7 @@ export interface SignUpFormProps {
 
 const usePresenter = ({ setStep }: SignUpFormProps) => {
   const { currentStep, next, back, handleSubmit, isFirst, isLast, step } = useMultistepForm({
-    multiStepScheme,
+    multiStepFormScheme,
     validationScheme,
   });
 

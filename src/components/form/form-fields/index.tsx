@@ -8,14 +8,14 @@ interface Field {
 
 type Row = Field[];
 
-type Scheme = Row[];
+type FormScheme = Row[];
 
 interface FormFieldsProps {
-  scheme: Scheme;
+  formScheme: FormScheme;
   control: any;
 }
 
-export const FormFields = ({ scheme, control }: FormFieldsProps) => {
+export const FormFields = ({ formScheme, control }: FormFieldsProps) => {
   const renderRow = (row: Row) => {
     const fields = row.map((field) => {
       const { component: Component, ...props } = field;
@@ -24,7 +24,7 @@ export const FormFields = ({ scheme, control }: FormFieldsProps) => {
     return fields;
   };
 
-  const rows = scheme.map((row) => renderRow(row));
+  const rows = formScheme.map((row) => renderRow(row));
 
   return <Box sx={{ display: "flex", flexDirection: "column", gap: "20px" }}>{rows}</Box>;
 };
